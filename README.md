@@ -1,1 +1,3 @@
-# ansible-ss-collection
+# Ansible Collection - delinea.ss
+
+Documentation for the collection.

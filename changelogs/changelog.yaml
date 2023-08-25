@@ -1,0 +1,15 @@
+---
+ancestor:
+releases:
+  1.0.0:
+    changes:
+      release_summary: |
+        New plugin for getting secrets from Delinea Secret Server in Ansible.
+    fragments:
+      - 1.0.0.yml
+    plugins:
+      lookup:
+        - description: Get secrets from Delinea Secret Server
+          name: tss
+          namespace:
+    release_date: '2023-08-30'
