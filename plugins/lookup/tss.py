@@ -127,7 +127,7 @@ EXAMPLES = r"""
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 base_url='https://secretserver.domain.com/SecretServer/',
                 username='user.name',
@@ -148,7 +148,7 @@ EXAMPLES = r"""
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 base_url='https://secretserver.domain.com/SecretServer/',
                 username='user.name',
@@ -170,7 +170,7 @@ EXAMPLES = r"""
       secret_password: >-
         {{
             ((lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 base_url='https://secretserver.domain.com/SecretServer/',
                 token='delinea_access_token',
@@ -188,7 +188,7 @@ EXAMPLES = r"""
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 fetch_attachments=True,
                 file_download_path='/home/certs',
@@ -211,7 +211,7 @@ EXAMPLES = r"""
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 fetch_secret_ids_from_folder=true,
                 base_url='https://secretserver.domain.com/SecretServer/',
@@ -231,7 +231,7 @@ EXAMPLES = r"""
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 0,
                 secret_path='\folderName\secretName'
                 base_url='https://secretserver.domain.com/SecretServer/',

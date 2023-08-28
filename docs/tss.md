@@ -56,7 +56,7 @@ The path to append to the base URL to form a valid OAuth2 Access Grant request.
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 base_url='https://secretserver.domain.com/SecretServer/',
                 username='user.name',
@@ -77,7 +77,7 @@ The path to append to the base URL to form a valid OAuth2 Access Grant request.
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 base_url='https://secretserver.domain.com/SecretServer/',
                 username='user.name',
@@ -99,7 +99,7 @@ The path to append to the base URL to form a valid OAuth2 Access Grant request.
       secret_password: >-
         {{
             ((lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 base_url='https://secretserver.domain.com/SecretServer/',
                 token='delinea_access_token',
@@ -117,7 +117,7 @@ The path to append to the base URL to form a valid OAuth2 Access Grant request.
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 fetch_attachments=True,
                 file_download_path='/home/certs',
@@ -140,7 +140,7 @@ The path to append to the base URL to form a valid OAuth2 Access Grant request.
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 102,
                 fetch_secret_ids_from_folder=true,
                 base_url='https://secretserver.domain.com/SecretServer/',
@@ -160,7 +160,7 @@ The path to append to the base URL to form a valid OAuth2 Access Grant request.
       secret: >-
         {{
             lookup(
-                'community.general.tss',
+                'delinea.ss.tss',
                 0,
                 secret_path='\folderName\secretName'
                 base_url='https://secretserver.domain.com/SecretServer/',
