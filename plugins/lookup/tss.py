@@ -29,26 +29,22 @@ options:
         description: Indicate a full path of secret including folder and secret name when the secret ID is set to 0.
         required: false
         type: str
-        version_added: 7.2.0
     fetch_secret_ids_from_folder:
         description:
             - Boolean flag which indicates whether secret ids are in a folder is fetched by folder ID or not.
             - V(true) then the terms will be considered as a folder IDs. Otherwise (default), they are considered as secret IDs.
         required: false
         type: bool
-        version_added: 7.1.0
     fetch_attachments:
         description:
             - Boolean flag which indicates whether attached files will get downloaded or not.
             - The download will only happen if O(file_download_path) has been provided.
         required: false
         type: bool
-        version_added: 7.0.0
     file_download_path:
         description: Indicate the file attachment download location.
         required: false
         type: path
-        version_added: 7.0.0
     base_url:
         description: The base URL of the server, for example V(https://localhost/SecretServer).
         env:
@@ -85,7 +81,6 @@ options:
             - section: tss_lookup
               key: domain
         required: false
-        version_added: 3.6.0
     token:
         description:
           - Existing token for Delinea authorizer.
@@ -96,7 +91,6 @@ options:
         ini:
             - section: tss_lookup
               key: token
-        version_added: 3.7.0
     api_path_uri:
         default: /api/v1
         description: The path to append to the base URL to form a valid REST
