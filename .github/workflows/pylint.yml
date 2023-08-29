@@ -1,23 +1,44 @@
-name: Pylint
+---
+name: lint
+on:
+  # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
+  push:
+    branches:
+      - main
+      - stable-*
+  pull_request:
+  # Run CI once per day (at 06:00 UTC)
+  # This ensures that even if there haven't been commits that we are still testing against latest version of ansible-test for each ansible-base version
+  # schedule:
+  #   - cron: '0 6 * * *'
+  workflow_dispatch:
+# To avoid conflict with shared lint task, not setting anything here
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.action }}
+#   cancel-in-progress: true
 
-on: [push]
-
+permissions:
+  pull-requests: write
+  checks: write
+  contents: read
 jobs:
-  build:
+  lint:
+    uses: delineaxpm/github-workflows/.github/workflows/lint.yml@main
+    secrets: inherit
+  ansible-lint:
+    name: ansible-lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+    timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Analysing the code with pylint
-      run: |
-        pylint $(git ls-files '*.py')
+      - name: checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: ansible-lint
+        uses: reviewdog/action-ansiblelint@v1.6.2
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review # Change reporter.
+          ansiblelint_flags: -x core playbook/*
+          # customize ansible lint with: https://ansible-lint.readthedocs.io/en/latest/configuring/
