@@ -22,9 +22,6 @@ permissions:
   checks: write
   contents: read
 jobs:
-  lint:
-    uses: delineaxpm/github-workflows/.github/workflows/lint.yml@main
-    secrets: inherit
   ansible-lint:
     name: ansible-lint
     runs-on: ubuntu-latest
