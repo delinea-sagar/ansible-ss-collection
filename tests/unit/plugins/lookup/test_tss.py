@@ -88,7 +88,7 @@ class TestLookupModule(TestCase):
     INVALID_TERMS = ['foo']
 
     def setUp(self):
-        self.lookup = lookup_loader.get("community.general.tss")
+        self.lookup = lookup_loader.get("delinea.ss.tss")
 
     @patch.multiple(TSS_IMPORT_PATH,
                     HAS_TSS_SDK=False,

@@ -62,7 +62,9 @@ build_ignore:
   - .venv
   - changelogs
   - venv
+  - env
   - vendor
+  - .pytest_cache
   # Files:
   - .changie.yaml
   - .editorconfig
@@ -84,3 +86,4 @@ build_ignore:
   - go.sum
   - magefile.go
   - renovate.json
+  - playbook.yml
