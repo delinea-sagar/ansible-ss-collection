@@ -40,5 +40,5 @@ jobs:
         run: sudo pip install pytest
 
       - name: Run Unit Test
-        run: python3 -m pytest
+        run: ansible-test units
         working-directory: ${{ env.HERE }}
