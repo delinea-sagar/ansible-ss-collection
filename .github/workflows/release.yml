@@ -1,0 +1,38 @@
+---
+name: release
+
+on:
+  workflow_dispatch:
+
+env:
+  ANSIBLE: "stable-2.15"
+  HERE: "./ansible_collections/delinea/ss"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Pull
+        uses: actions/checkout@v3
+        with:
+          path: ${{ env.HERE }}
+
+      - name: Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          
+      - name: Ansible
+        run: sudo apt install ansible
+        working-directory: ${{ env.HERE }}
+
+      - name: Build
+        run: ansible-galaxy collection build --force
+        working-directory: ${{ env.HERE }}
