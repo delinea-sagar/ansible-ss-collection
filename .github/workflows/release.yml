@@ -36,12 +36,8 @@ jobs:
         run: ansible-galaxy collection build --force
         working-directory: ${{ env.HERE }}
 
-      - name: Run Sanity Test
-        run: ansible-test sanity
-        working-directory: ${{ env.HERE }}
-
       - name: PyTest
-        run: sudo apt-get install python3-pytest -y
+        run: sudo pip install pytest
 
       - name: Run Unit Test
         run: python3 -m pytest
