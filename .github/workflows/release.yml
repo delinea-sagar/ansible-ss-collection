@@ -40,5 +40,5 @@ jobs:
         run: sudo pip install pytest
 
       - name: Run Unit Test
-        run: python3 -m pytest
+        run: python -m pytest
         working-directory: ${{ env.HERE }}
