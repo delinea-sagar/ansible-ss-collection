@@ -36,6 +36,9 @@ jobs:
         run: ansible-galaxy collection build --force
         working-directory: ${{ env.HERE }}
 
+      - name: Install
+        run: ansible-galaxy collection install delinea-ss-1.0.0.tar.gz --force
+
       #- name: PyTest
       #  run: sudo pip install pytest
 
