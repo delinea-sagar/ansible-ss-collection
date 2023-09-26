@@ -39,19 +39,19 @@ jobs:
       - name: Install
         run: ansible-galaxy collection install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
 
-      #- name: PyTest
-      #  run: sudo pip install pytest
+      - name: PyTest
+        run: sudo pip install pytest
 
-      #- name: Run Unit Test
-      #  run: python -m pytest
-      #  working-directory: ${{ env.HERE }}
-
-      - name: Install Tox
-        run: |
-          python -m pip install --upgrade pip
-          pip install tox
-
-      - name: Run Tox
-        # Run tox using the version of Python in `PATH`
-        run: tox -e py
+      - name: Run Unit Test
+        run: python -m pytest
         working-directory: ${{ env.HERE }}
+
+      #- name: Install Tox
+      #  run: |
+      #    python -m pip install --upgrade pip
+      #    pip install tox
+
+      #- name: Run Tox
+      #  # Run tox using the version of Python in `PATH`
+      #  run: tox -e py
+      #  working-directory: ${{ env.HERE }}
