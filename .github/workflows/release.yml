@@ -44,7 +44,7 @@ jobs:
 
       - name: Run Unit Test
         run: python -m pytest
-        working-directory: ${{ env.HERE }}
+        working-directory: "/home/runner/.ansible/collections/ansible_collections/delinea/ss"
 
       #- name: Install Tox
       #  run: |
