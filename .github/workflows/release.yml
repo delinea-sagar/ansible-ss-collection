@@ -46,7 +46,7 @@ jobs:
 
       - name: Get File
         run: |
-              generated_file=$(find . -type f -name "delinea-ss-*.tar.gz" | head -n 1)
+              generated_file=$(find . -name "delinea-ss-*.tar.gz" | head -n 1)
               echo "FOUND_FILE=$generated_file" >> $GITHUB_ENV
         working-directory: ${{ env.HERE }}
 
