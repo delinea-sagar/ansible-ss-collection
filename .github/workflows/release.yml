@@ -47,7 +47,7 @@ jobs:
         id: read_version
         run: |
           # Use awk to extract the version from galaxy.yml
-          echo "$(cat ${{ env.HERE }}/galaxy.yml | awk '/^version:/ {print $2}')"
+          echo "::set-env name=VERSION::$(cat ${{ env.HERE }}/galaxy.yml | awk '/^version:/ {print $2}')"
 
       - name: Upload Ansible Collection Package
         uses: actions/upload-artifact@v1
