@@ -29,27 +29,26 @@ jobs:
         with:
           python-version: "3.10"
           
-      #- name: Ansible
-      #  run: sudo apt install ansible
+      - name: Ansible
+        run: sudo apt install ansible
 
-      #- name: Build
-      #  run: ansible-galaxy collection build --force
-      #  working-directory: ${{ env.HERE }}
-      - name: PyTest
-        run: python3.10 -m pip install pytest
+      - name: Build
+        run: ansible-galaxy collection build --force
+        working-directory: ${{ env.HERE }}
+
       - name: Install
         run: |
-            tree /opt/hostedtoolcache/Python/3.10.13
-            #export ANSIBLE_COLLECTIONS_PATHS=opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10
-            #ansible-galaxy collection install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
+            #tree /opt/hostedtoolcache/Python/3.10.13
+            export ANSIBLE_COLLECTIONS_PATHS=opt/hostedtoolcache/Python/3.10.13/x64/bin
+            ansible-galaxy collection install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
         #run: python3.10 -m pip install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
 
-      #- name: PyTest
-      #  run: python3.10 -m pip install pytest
+      - name: PyTest
+        run: python3.10 -m pip install pytest
 
-      #- name: Run Unit Test
-      #  run: python -m pytest
-      #  working-directory: ${{ env.HERE }}
+      - name: Run Unit Test
+        run: python -m pytest
+        working-directory: ${{ env.HERE }}
 
       #- name: Install Tox
       #  run: |
