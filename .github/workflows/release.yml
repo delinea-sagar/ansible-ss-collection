@@ -47,8 +47,8 @@ jobs:
 
       - name: Get File
         run: |
-              #generated_file=$(find . -name "delinea-ss-1.0.0.tar.gz" | head -n 1)
-              echo ${{ steps.test.outputs }}
+              generated_file=$(find . -name "delinea-ss-1.0.0.tar.gz" | head -n 1)
+              echo "::set-output name=output::$generated_file"
         working-directory: ${{ env.HERE }}
 
       - name: Upload Ansible Collection Package
