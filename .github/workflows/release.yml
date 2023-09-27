@@ -49,12 +49,13 @@ jobs:
           # Read the version from galaxy.yml and set it as an environment variable
           version=$(yaml2json galaxy.yml | jq -r .version)
           echo "VERSION=$version" >> $GITHUB_ENV
+          echo "Version from galaxy.yml: $VERSION"
 
       - name: Upload Ansible Collection Package
         uses: actions/upload-artifact@v1
         with:
-          name: delinea-ss-${{ VERSION }}.tar.gz
-          path: ${{ env.HERE }}/delinea-ss-${{ VERSION }}.tar.gz
+          name: delinea-ss-$VERSION.tar.gz
+          path: ${{ env.HERE }}/delinea-ss-$VERSION.tar.gz
 
       #- name: PyTest
       #  run: python -m pip install pytest
