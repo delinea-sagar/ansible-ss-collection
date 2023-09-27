@@ -47,8 +47,7 @@ jobs:
         id: read_version
         run: |
           # Use awk to extract the version from galaxy.yml
-          tree ${{ env.HERE }}
-          version=$(cat env.HERE/galaxy.yml | awk '/^version:/ {print $2}')
+          version=$(cat ${{ env.HERE }}/galaxy.yml | awk '/^version:/ {print $2}')
           echo "VERSION=$version" >> $GITHUB_ENV
           echo "Version from galaxy.yml: $VERSION"
 
