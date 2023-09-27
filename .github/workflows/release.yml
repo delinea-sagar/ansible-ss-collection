@@ -37,7 +37,7 @@ jobs:
         working-directory: ${{ env.HERE }}
 
       - name: Install
-        run: tar -xzvf /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz -C /path/to/python/package/folder/
+        run: tar -xzvf /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz -C /opt/hostedtoolcache/Python/3.10.13/x64/lib
         #run: python3.10 -m pip install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
 
       - name: PyTest
