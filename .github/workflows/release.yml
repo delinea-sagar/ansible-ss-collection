@@ -46,8 +46,11 @@ jobs:
       - name: Read version from galaxy.yml
         id: read_version
         run: |
+          # Install the PyYAML package (if not already installed)
+          pip install pyyaml
+
           # Read the version from galaxy.yml and set it as an environment variable
-          version=$(yaml2json galaxy.yml | jq -r .version)
+          version=$(python -c "import yaml; with open('galaxy.yml', 'r') as f: data = yaml.safe_load(f); print(data.get('version', 'Version not found'))")
           echo "VERSION=$version" >> $GITHUB_ENV
           echo "Version from galaxy.yml: $VERSION"
 
