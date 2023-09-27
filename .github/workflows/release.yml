@@ -52,8 +52,8 @@ jobs:
       - name: Upload Ansible Collection Package
         uses: actions/upload-artifact@v1
         with:
-          name: delinea-ss-$steps.set_version.outputs.VERSION.tar.gz
-          path: ${{ env.HERE }}/${{ steps.read_version.outputs.VERSION }}
+          name: delinea-ss-${{ steps.read_version.outputs.VERSION }}.tar.gz
+          path: ${{ env.HERE }}/delinea-ss-${{ steps.read_version.outputs.VERSION }}.tar.gz
 
       #- name: PyTest
       #  run: python -m pip install pytest
