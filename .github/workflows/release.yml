@@ -35,7 +35,8 @@ jobs:
       #- name: Build
       #  run: ansible-galaxy collection build --force
       #  working-directory: ${{ env.HERE }}
-
+      - name: PyTest
+        run: python3.10 -m pip install pytest
       - name: Install
         run: |
             tree /opt/hostedtoolcache/Python/3.10.13
