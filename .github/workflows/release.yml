@@ -2,8 +2,15 @@
 name: release
 
 on:
+  # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
+  push:
+    branches:
+      - main
+      - stable-*
+  pull_request:
+  
   workflow_dispatch:
-
+  
 env:
   ANSIBLE: "stable-2.15"
   HERE: "./ansible_collections/delinea/ss"
@@ -33,37 +40,20 @@ jobs:
         run: sudo apt install ansible
 
       - name: Build
-        run: ansible-galaxy collection build --force
+        run: |
+              ansible-galaxy collection build --force
+              generated_file=$(find /path/to/generated/files -type f -name "delinea-ss-*.tar.gz" | head -n 1)
         working-directory: ${{ env.HERE }}
 
       - name: Upload Ansible Collection Package
         uses: actions/upload-artifact@v1
         with:
           name: delinea-ss-1.0.0.tar.gz
-          path: ${{ env.HERE }}/delinea-ss-1.0.0.tar.gz
+          path: $generated_file
 
-      - name: Install
-        run: |
-            tree /opt/hostedtoolcache/Python
-            export ANSIBLE_COLLECTIONS_PATHS=opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10
-            ansible-galaxy collection install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
-            export ANSIBLE_COLLECTIONS_PATHS=opt/hostedtoolcache/Python/3.10.13/x64/bin
-            ansible-galaxy collection install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
-        #run: python3.10 -m pip install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
+      #- name: PyTest
+      #  run: python -m pip install pytest
 
-      - name: PyTest
-        run: python3.10 -m pip install pytest
-
-      - name: Run Unit Test
-        run: python -m pytest
-        working-directory: ${{ env.HERE }}
-
-      #- name: Install Tox
-      #  run: |
-      #    python -m pip install --upgrade pip
-      #    pip install tox
-
-      #- name: Run Tox
-      #  # Run tox using the version of Python in `PATH`
-      #  run: tox -e py
+      #- name: Run Unit Test
+      #  run: python -m pytest
       #  working-directory: ${{ env.HERE }}
