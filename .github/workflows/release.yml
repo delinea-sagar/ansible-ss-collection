@@ -47,13 +47,13 @@ jobs:
         id: read_version
         run: |
           # Use awk to extract the version from galaxy.yml
-          echo "::set-env name=VERSION::$(cat ${{ env.HERE }}/galaxy.yml | awk '/^version:/ {print $2}')"
+          echo "::set-output name=VERSION::$(cat ${{ env.HERE }}/galaxy.yml | awk '/^version:/ {print $2}')"
 
       - name: Upload Ansible Collection Package
         uses: actions/upload-artifact@v1
         with:
-          name: delinea-ss-$VERSION.tar.gz
-          path: ${{ env.HERE }}/delinea-ss-$VERSION.tar.gz
+          name: delinea-ss-$steps.set_version.outputs.VERSION.tar.gz
+          path: ${{ env.HERE }}/delinea-ss-$steps.set_version.outputs.VERSION.tar.gz
 
       #- name: PyTest
       #  run: python -m pip install pytest
