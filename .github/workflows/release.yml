@@ -40,6 +40,7 @@ jobs:
         run: sudo apt install ansible
 
       - name: Build
+        id: Build_Package
         run: |
               ansible-galaxy collection build --force
               generated_file=$(find . -type f -name "delinea-ss-*.tar.gz" | head -n 1)
@@ -49,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: delinea-ss-1.0.0.tar.gz
-          path: $generated_file
+          path: ${{ steps.Build_Package.outputs.generated_file }}
 
       #- name: PyTest
       #  run: python -m pip install pytest
