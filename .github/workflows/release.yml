@@ -38,7 +38,7 @@ jobs:
 
       - name: Install
         run: |
-            #tree /opt/hostedtoolcache/Python/3.10.13
+            tree /opt/hostedtoolcache/Python
             export ANSIBLE_COLLECTIONS_PATHS=opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10
             ansible-galaxy collection install /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss/delinea-ss-1.0.0.tar.gz --force
             export ANSIBLE_COLLECTIONS_PATHS=opt/hostedtoolcache/Python/3.10.13/x64/bin
