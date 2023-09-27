@@ -40,22 +40,21 @@ jobs:
         run: sudo apt install ansible
 
       - name: Build
-        id: test
-        run: |
-              ansible-galaxy collection build --force
+        run: ansible-galaxy collection build --force
         working-directory: ${{ env.HERE }}
 
-      - name: Get File
+      - name: Read version from galaxy.yml
+        id: read_version
         run: |
-              generated_file=$(find . -name "delinea-ss-1.0.0.tar.gz" | head -n 1)
-              echo "::set-output name=output::$generated_file"
-        working-directory: ${{ env.HERE }}
+          # Read the version from galaxy.yml and set it as an environment variable
+          version=$(yaml2json galaxy.yml | jq -r .version)
+          echo "VERSION=$version" >> $GITHUB_ENV
 
       - name: Upload Ansible Collection Package
         uses: actions/upload-artifact@v1
         with:
-          name: delinea-ss-1.0.0.tar.gz
-          path: $FOUND_FILE
+          name: delinea-ss-${{ VERSION }}.tar.gz
+          path: ${{ env.HERE }}/delinea-ss-${{ VERSION }}.tar.gz
 
       #- name: PyTest
       #  run: python -m pip install pytest
