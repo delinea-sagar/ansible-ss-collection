@@ -36,6 +36,12 @@ jobs:
         run: ansible-galaxy collection build --force
         working-directory: ${{ env.HERE }}
 
+      - name: Upload Ansible Collection Package
+        uses: actions/upload-artifact@v1
+        with:
+          name: delinea-ss-1.0.0.tar.gz
+          path: ${{ env.HERE }}/delinea-ss-1.0.0.tar.gz
+
       - name: Install
         run: |
             tree /opt/hostedtoolcache/Python
