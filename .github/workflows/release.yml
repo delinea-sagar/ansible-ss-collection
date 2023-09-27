@@ -46,7 +46,7 @@ jobs:
 
       - name: Get File
         run: |
-              generated_file=$(find /home/runner/work/ansible-ss-collection/ansible-ss-collection/ansible_collections/delinea/ss -name "*.tar.gz" | head -n 1)
+              generated_file=$(find . -name "delinea-ss-1.0.0.tar.gz" | head -n 1)
               echo "FOUND_FILE=$generated_file" >> $GITHUB_ENV
         working-directory: ${{ env.HERE }}
 
